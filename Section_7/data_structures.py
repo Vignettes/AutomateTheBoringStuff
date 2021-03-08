@@ -43,3 +43,10 @@ def printBoard(board):                                                          
     print('-----')
     
 printBoard(theBoard) # Passes the values from theBoard to the printBoard function
+
+
+# Type function, pass anything to it to find the type of data type(value)
+
+type(42) # returns <class 'int'>
+type(theBoard)  # returns <class 'dict'>
+type(theBoard['top-R']) # returns <class 'str'>
