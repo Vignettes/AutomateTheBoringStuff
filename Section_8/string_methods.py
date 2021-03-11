@@ -1,5 +1,16 @@
 ### String Methods ###
 
+# First let's talk about pyperclip as it can copy to and from the clipboard.
+# Install via pip "pip install pyperclip" in CMD on Windows, Terminal on Mac. 
+# Then import it
+import pyperclip
+
+# To copy to the clipboard
+pyperclip.copy('Hello!!!!!!!!!!!!')  # Copies Hello!!!!!!!!!!!! to the clipboard
+# To paste from the clipboard
+print(pyperclip.paste()) # Prints the contents of the clipboard. 
+
+
 # uppercase
 spam = 'Hi'
 print(spam.upper())
@@ -63,4 +74,14 @@ print(Hi.lstrip()) #removes the spacing to the left
 
 Hi = '    Hi     '
 print(Hi.rstrip()) #removes the spacing to the right
+
+# We can pass the strip method a string with characters to remove instead of whitespace
+spam = 'SpamSpamBaconSpamEggsSpamSpam'.strip('ampS') # Removes capital S, p, a, and m. 
+print(spam) # prints BacnSpamEggs because it removes the characters up to the first letter that wasn't passed to the string 
+
+# Now tell me how I can replace some of the info in my string. 
+# Just use .replace('to_be_replaced', 'to_replace')
+spam = 'Hello There!' 
+spam.replace('e', 'XYZ') # replace all instances of e with XYZ
+print(spam)
 
