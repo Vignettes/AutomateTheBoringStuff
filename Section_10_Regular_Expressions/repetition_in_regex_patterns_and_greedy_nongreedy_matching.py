@@ -41,3 +41,13 @@ print(haRegex.search('He said HaHaHa'))
 phoneRegex = re.compile(r'((\d\d\d-)?\d\d\d-\d\d\d\d(, )?){3}') # Looking to match 3 phone numbers in a row with an optional comma (,)?
 mo = phoneRegex.search('My numbers are 415-444-2223, 424-222-3345, 882-232-5555')
 print(mo.group()) # returns the phone numbers sepearated by a comma 
+
+# With the {} match number you can use formats like {1,5} similar to index slicing
+
+digitRegex = re.compile(r'(\d){3,5}') # between 3-5 matches
+print(digitRegex.search('1234567890'))
+ 
+# By default Python runs greedy matches where it tries to match the most. For non-greedy add ? to the end of the pattern
+
+digitRegex = re.compile(r'(\d){3,5}?') # The ? at the end of the {} notes to be non-greedy and it would grab the first 3 digits
+print(digitRegex.search('1234567890'))
