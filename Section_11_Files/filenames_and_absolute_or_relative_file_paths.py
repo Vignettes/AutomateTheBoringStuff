@@ -56,3 +56,10 @@ except:
     print('doesn\'t exist')
 # To list out all the files and folders in a directory use os.listdir()
 os.listdir('C:\\Users\\georgewolf')
+
+
+totalSize = 0
+for filename in oslistdir('c:\\Intel'):
+    if not os.path.isfile(os.path.join('c:\\Intel', filename)):
+        continue
+    totalSize = totalSize+ os.path.getsize(os.path.join('c:\\Intel', filename))
