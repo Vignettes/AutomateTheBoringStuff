@@ -37,11 +37,11 @@ sleep(8)
 
 try: # try to create the below variable and click it
     download_list = driver.find_elements_by_xpath("//*[@class='css-us18jn']") # currently only grabs first item, likely we only have 1 per day
-    print(download_list)
+    print(download_list) # prints the list of documents available to download
 except: # if error occurs print 'No files to download', sleep for 10s and exit program
     print("No files to download")
-    driver.close() # Closes web browser
-    sys.exit(1)
+    driver.quit() # Closes web browser
+    sys.exit()
 
 sleep(5)
 
@@ -54,10 +54,16 @@ for val in download_list: # For each value in 'download_list'
     download_package = download_list # New variable download_package set to equal download_list, probably redundant
     x = 0 # x set equal to 0 to iterate over the list
     y = 0
-    if x <= len(download_list): # while x is less than the total length of the downloaded list
-        download_package[x].click() # open the download link
-        download = driver.find_element_by_xpath("//*[@class='olv-button olv-ignore-transform css-zhf2g3']") # find the download button
-        download.click() #download the zip
+    while x <= len(download_list): # while x is less than (or equal to) the total length of the downloaded list variable
+        try:
+            download_package[x].click() # open the download link
+            download = driver.find_element_by_xpath("//*[@class='olv-button olv-ignore-transform css-zhf2g3']") # find the download button
+            download.click() #download the zip
+        except: # if an error is encountered (meaning there are no files left to download)
+            print('All files have been downloaded')  # print that all have been downloaded
+            driver.close() # close the web browser
+            sleep(30) # wait for 30s 
+            sys.exit() # exit the program
         sleep(5)
         latest_downloads = glob.glob('C:/Users/georgewolf/Downloads/*.zip') # variable with the contents of 'Downloads' which are .zip
         latest_download = max(latest_downloads, key=os.path.getmtime) # grabs the latest downloaded file from the latest_downloads variable
@@ -67,9 +73,8 @@ for val in download_list: # For each value in 'download_list'
         except:
             print('Please review the files and clean up any completed items')
         x += 1 # increment the value of x by 1 to move to the next index in the list
-        y += 1
-    else:
-        driver.quit() # Closes the web browser when done
+        y += 1 # increment the value of y by 1 to name the packages as they are downloaded.
+ 
 
 
 
