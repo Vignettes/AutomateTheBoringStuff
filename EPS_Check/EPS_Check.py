@@ -29,6 +29,9 @@ def aggressive():
     elif stock_one_pe <= 39:
         print(f'Stock is trading at {stock_one_pe}x EPS and may be under-valued')
 
+#Main Menu Selection
+print(f'Hello, \n Please make a selection from the below options (enter the number): \n 1) P/E Check \n 2) Stock Price Check')
+
 #Ask user to input the current stock price
 stock_one = int(input("Provide the current stock price: "))
 
